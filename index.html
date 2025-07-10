@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login QC App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+  <div class="bg-white/10 p-8 rounded-xl w-full max-w-md">
+    <h2 class="text-xl font-bold mb-4 text-center">Masuk QC App</h2>
+    <form id="loginForm" class="space-y-4">
+      <input type="email" id="email" placeholder="Email" class="w-full p-2 rounded bg-gray-800 text-white" required />
+      <input type="password" id="password" placeholder="Password" class="w-full p-2 rounded bg-gray-800 text-white" required />
+      <button type="submit" class="w-full bg-teal-500 p-2 rounded">Masuk</button>
+    </form>
+    <p class="text-center mt-4 text-sm">Belum punya akun? <a href="register.html" class="text-teal-300 underline">Daftar</a></p>
+  </div>
+  <script type="module">
+    import { loginUser } from './js/auth.js';
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      try {
+        await loginUser(email, password);
+        alert('Login berhasil!');
+        window.location.href = 'dashboard.html';
+      } catch (err) {
+        alert('Gagal login: ' + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
