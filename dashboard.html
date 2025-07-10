@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard QC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-900 text-white p-6">
+  <h1 class="text-2xl font-bold mb-6">Ringkasan Keuangan</h1>
+  <div class="grid grid-cols-3 gap-4 mb-6">
+    <div class="bg-white/10 p-4 rounded">💰 Total Saldo: Rp 10.000.000</div>
+    <div class="bg-white/10 p-4 rounded">📥 Kas Masuk: Rp 6.000.000</div>
+    <div class="bg-white/10 p-4 rounded">📤 Kas Keluar: Rp 4.000.000</div>
+  </div>
+  <canvas id="kasChart" height="120"></canvas>
+  <script>
+    const ctx = document.getElementById('kasChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar'],
+        datasets: [
+          { label: 'Masuk', data: [2000000, 2500000, 1500000], backgroundColor: 'green' },
+          { label: 'Keluar', data: [1000000, 1000000, 2000000], backgroundColor: 'red' }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
