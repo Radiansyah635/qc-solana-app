@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar QC App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+  <div class="bg-white/10 p-8 rounded-xl w-full max-w-md">
+    <h2 class="text-xl font-bold mb-4 text-center">Daftar QC App</h2>
+    <form id="registerForm" class="space-y-4">
+      <input type="text" id="name" placeholder="Nama Lengkap" class="w-full p-2 rounded bg-gray-800 text-white" required />
+      <input type="email" id="email" placeholder="Email" class="w-full p-2 rounded bg-gray-800 text-white" required />
+      <input type="password" id="password" placeholder="Password" class="w-full p-2 rounded bg-gray-800 text-white" required />
+      <button type="submit" class="w-full bg-teal-500 p-2 rounded">Daftar</button>
+    </form>
+    <p class="text-center mt-4 text-sm">Sudah punya akun? <a href="index.html" class="text-teal-300 underline">Masuk</a></p>
+  </div>
+  <script type="module">
+    import { registerUser } from './js/auth.js';
+    document.getElementById('registerForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      try {
+        await registerUser(email, password, name);
+        alert('Registrasi berhasil!');
+        window.location.href = 'index.html';
+      } catch (err) {
+        alert('Gagal daftar: ' + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
